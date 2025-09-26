@@ -12,15 +12,17 @@ import javax.swing.JOptionPane;
 import jdbc.ModuloConexao;
 import view.TelaLogin;
 import view.TelaPrincipal;
+
 /**
  *
- * @author GERAL
+ * @author clebe
  */
 public class UsuarioDAO {
-    private Connection con;
+    
+    private Connection conexao;
     
     public UsuarioDAO(){
-        this.con = ModuloConexao.conectar();
+        this.conexao = ModuloConexao.conectar();
     }
     
     //Metodo efetuaLogin
@@ -31,7 +33,7 @@ public class UsuarioDAO {
             //1 passo - SQL
             String sql = "select * from tbusuarios where usuario = ? and senha = ?";
             PreparedStatement stmt;
-            stmt = con.prepareStatement(sql);
+            stmt = conexao.prepareStatement(sql);
             stmt.setString(1, usuario);
             stmt.setString(2, senha);
 
@@ -39,8 +41,17 @@ public class UsuarioDAO {
 
             if (rs.next()) {
                 //Usuario logou
+                String perfil = rs.getString(6);
+                if (perfil.equals("admin")){
                 TelaPrincipal tela = new TelaPrincipal();
                 tela.setVisible(true);
+                tela.jMnItmUsuario.setEnabled(true);
+                tela.jMnRelatorio.setEnabled(true);
+                tela.jLblUsuario.setText(rs.getString(2));
+                } else {
+                    TelaPrincipal tela = new TelaPrincipal();
+                    tela.setVisible(true);
+                }
                 
             } else {
                 //Dados incorretos
@@ -53,4 +64,7 @@ public class UsuarioDAO {
         }
 
     }
+    
+    
+    
 }

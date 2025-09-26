@@ -6,7 +6,7 @@ package model;
 
 /**
  *
- * @author GERAL
+ * @author clebe
  */
 public class Usuario {
     private int idUser;
@@ -15,17 +15,25 @@ public class Usuario {
     private String login;
     private String senha;
     private String perfil;
-    
+
     public Usuario() {
     }
-    
-    public Usuario(int idUser, String usuario, String fone, String login, String senha, String perfil){
-    this.idUser = idUser;
-    this.usuario = usuario;
-    this.fone = fone;
-    this.login = login;
-    this.senha = senha;
-    this.perfil = perfil;
+
+    public Usuario(int idUser, String usuario, String fone, String login, String senha, String perfil) {
+        this.idUser = idUser;
+        this.usuario = usuario;
+        this.fone = fone;
+        this.login = login;
+        this.senha = senha;
+        this.perfil = perfil;
+    }
+
+    public String getPerfil() {
+        return perfil;
+    }
+
+    public void setPerfil(String perfil) {
+        this.perfil = perfil;
     }
 
     public int getIdUser() {
@@ -67,12 +75,13 @@ public class Usuario {
     public void setSenha(String senha) {
         this.senha = senha;
     }
-
-    public String getPerfil() {
-        return perfil;
-    }
-
-    public void setPerfil(String perfil) {
-        this.perfil = perfil;
-    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }
